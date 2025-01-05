@@ -361,3 +361,5 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/hex-agon/.clang-format
+/hex-agon/.clang-tidy
