@@ -363,3 +363,4 @@ MigrationBackup/
 FodyWeavers.xsd
 /hex-agon/.clang-format
 /hex-agon/.clang-tidy
+/build
