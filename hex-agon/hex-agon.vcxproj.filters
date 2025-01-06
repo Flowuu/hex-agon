@@ -18,10 +18,10 @@
     <ClCompile Include="src\entry.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\constructer.cpp">
+    <ClCompile Include="src\hex-agon\constructer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\hexDumper.cpp">
+    <ClCompile Include="src\hex-agon\hexDumper.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -29,10 +29,10 @@
     <ClInclude Include="src\includes\flogger.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\hexDumper.h">
+    <ClInclude Include="src\hex-agon\hexDumper.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\constructer.h">
+    <ClInclude Include="src\hex-agon\constructer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

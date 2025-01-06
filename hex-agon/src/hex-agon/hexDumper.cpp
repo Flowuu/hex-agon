@@ -2,7 +2,7 @@
 
 #include <fstream>
 
-#include "includes/flogger.hpp"
+#include "../includes/flogger.hpp"
 
 void HexDumper::initialize(std::filesystem::path inputFilePath) {
     console->clear();
