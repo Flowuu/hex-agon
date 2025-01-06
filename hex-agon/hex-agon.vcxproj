@@ -151,13 +151,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\hex-agon\constructer.cpp" />
+    <ClCompile Include="src\hexAgon\constructor.cpp" />
     <ClCompile Include="src\entry.cpp" />
-    <ClCompile Include="src\hex-agon\hexDumper.cpp" />
+    <ClCompile Include="src\hexAgon\hexDumper.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\hex-agon\constructer.h" />
-    <ClInclude Include="src\hex-agon\hexDumper.h" />
+    <ClInclude Include="src\hexAgon\constructor.h" />
+    <ClInclude Include="src\hexAgon\hexDumper.h" />
     <ClInclude Include="src\includes\flogger.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

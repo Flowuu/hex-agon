@@ -43,7 +43,7 @@ void HexDumper::initialize(std::filesystem::path inputFilePath) {
         return;
     }
 
-    console->log("read bytes: %d kb\n", static_cast<int>(readBytes) / 1000);
+    console->log("read bytes: %d kb\n\n", static_cast<int>(readBytes) / 1000);
 
     uint8_t* buffer = reinterpret_cast<uint8_t*>(pInputFileBuff);
     for (size_t i = 0; i <= readBytes; i++) {
