@@ -151,7 +151,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\constructer.cpp" />
     <ClCompile Include="src\entry.cpp" />
+    <ClCompile Include="src\hexDumper.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\constructer.h" />
+    <ClInclude Include="src\hexDumper.h" />
+    <ClInclude Include="src\includes\flogger.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
