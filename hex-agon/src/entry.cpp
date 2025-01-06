@@ -7,12 +7,12 @@ int main(int argc, char* argv[]) {
     console->log(LogLevel::orange, "[Hex-Agon]\n\n");
 
     std::filesystem::path inputFilePath;
-
     bool dump      = false;
     bool construct = false;
 
     if (argc == 1) {
         inputFilePath = console->getInput<std::string>("input file/path ->");
+
     } else if (argc == 2) {
         inputFilePath = argv[1];
         console->getInput<std::string>(
@@ -27,8 +27,8 @@ int main(int argc, char* argv[]) {
         inputFilePath = argv[1];
 
         for (int i = 1; i < argc; i++) {
-            if (dump == false) dump = !strcmp(argv[i], "-dump");
-            if (construct == false) construct = !strcmp(argv[i], "-construct");
+            if (construct == false) construct = !strcmp(argv[i], "-c");
+            if (dump == false) dump = !strcmp(argv[i], "-d");
         }
     }
 
