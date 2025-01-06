@@ -241,7 +241,7 @@ struct FLog {
 };
 
 #if FLOG_GLOBAL == 1
-inline std::unique_ptr<FLog> console = std::make_unique<FLog>();
+inline std::unique_ptr<FLog> console = std::make_unique<FLog>("hex-agon");
 #endif  // FLOG_GLOBAL
 
 #endif  // !FLOGGER_HPP
