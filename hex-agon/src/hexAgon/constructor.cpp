@@ -70,5 +70,5 @@ void Constructor::initialize(std::filesystem::path inputFilePath) {
     console->log("architecture: %s\n", (pNtHeaders->FileHeader.Machine == IMAGE_FILE_MACHINE_AMD64) ? "64-bit" : "32-bit");
     console->log("size: %d kb\n\n", static_cast<int>(u8Data.size()) / 1000);
 
-    console->report(LogLevel::success, "finished constructing the file.\n\n");
+    console->report(LogLevel::success, "finished constructing the file\n\n");
 }

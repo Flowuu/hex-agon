@@ -64,5 +64,5 @@ void HexDumper::initialize(std::filesystem::path inputFilePath) {
     CloseHandle(hInputFile);
     outputFile.close();
 
-    console->report(LogLevel::success, "Finished dumping\n\n");
+    console->report(LogLevel::success, "finished dumping the file\n\n");
 }
