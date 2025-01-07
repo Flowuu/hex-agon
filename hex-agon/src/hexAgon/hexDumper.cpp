@@ -27,7 +27,7 @@ void HexDumper::initialize(std::filesystem::path inputFilePath) {
         return;
     }
 
-    console->log("input file: %s | %d kb |\n", inputFilePath.filename().string().c_str(), static_cast<int>(inputFileSize) / 1000);
+    console->log("input file: %s | size: %d kb |\n", inputFilePath.filename().string().c_str(), static_cast<int>(inputFileSize) / 1000);
 
     void* pInputFileBuff = VirtualAlloc(nullptr, inputFileSize, MEM_COMMIT | MEM_RESERVE, PAGE_READWRITE);
     if (pInputFileBuff == nullptr) {
@@ -64,5 +64,5 @@ void HexDumper::initialize(std::filesystem::path inputFilePath) {
     CloseHandle(hInputFile);
     outputFile.close();
 
-    console->report(LogLevel::success, "Finished dumping\n");
+    console->report(LogLevel::success, "Finished dumping\n\n");
 }

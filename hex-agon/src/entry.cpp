@@ -31,7 +31,10 @@ int main(int argc, char* argv[]) {
     }
 
     // dumping dump XD
-    if (!strcmp(inputFilePath.extension().string().c_str(), ".bin") && !strcmp(inputFilePath.extension().string().c_str(), ".dump")) {
+    if (strcmp(inputFilePath.extension().string().c_str(), ".bin") && strcmp(inputFilePath.extension().string().c_str(), ".dump")) {
+        dump      = true;
+        construct = false;
+    } else {
         dump      = false;
         construct = true;
     }
@@ -40,17 +43,6 @@ int main(int argc, char* argv[]) {
         console->clear();
         console->report(LogLevel::error, "%s", console->getLastError().c_str());
         return 1;
-    }
-
-    // for argc 1 and 2
-    if (!construct && !dump) {
-        console->getInput<std::string>(
-            "----------\n"
-            "[c] construct\n"
-            "[d] dump"
-            "\n----------\n") == "c"
-            ? construct = true
-            : dump      = true;
     }
 
     if (dump)
