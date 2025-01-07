@@ -5,10 +5,11 @@
 #include "../includes/flogger.hpp"
 
 void HexDumper::initialize(std::filesystem::path inputFilePath) {
+    std::string outputFileName = inputFilePath.filename().string();
     console->clear();
     console->log(LogLevel::cyan, "[hex dumper]\n\n");
 
-    std::ofstream outputFile(inputFilePath.filename().string() + ".bin", std::ios::trunc);
+    std::ofstream outputFile(outputFileName + ".bin", std::ios::trunc);
     if (!outputFile.is_open()) {
         console->report(LogLevel::error, "%s", console->getLastError().c_str());
         return;
@@ -59,7 +60,7 @@ void HexDumper::initialize(std::filesystem::path inputFilePath) {
         }
     }
 
-    console->log("\n\n");
+    console->log(LogLevel::lightcyan, "\n\n[%s]\n\n", outputFileName.c_str());
 
     CloseHandle(hInputFile);
     outputFile.close();

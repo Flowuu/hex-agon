@@ -7,6 +7,9 @@
 
 #include "../includes/flogger.hpp"
 
+PIMAGE_DOS_HEADER pDosHeader;
+PIMAGE_NT_HEADERS pNtHeaders;
+
 void Constructor::initialize(std::filesystem::path inputFilePath) {
     std::string outputFileName = inputFilePath.stem().string();
 
@@ -38,18 +41,34 @@ void Constructor::initialize(std::filesystem::path inputFilePath) {
 
     inputFile.close();
 
-    PIMAGE_DOS_HEADER pDosHeader = reinterpret_cast<PIMAGE_DOS_HEADER>(u8Data.data());
-    PIMAGE_NT_HEADERS pNtHeaders = reinterpret_cast<PIMAGE_NT_HEADERS>((LPBYTE)pDosHeader + pDosHeader->e_lfanew);
+    // safety check
+    bool hasHeaders = u8Data.size() >= sizeof(IMAGE_DOS_HEADER) + sizeof(IMAGE_NT_HEADERS);
+
+    if (hasHeaders) {
+        pDosHeader = reinterpret_cast<PIMAGE_DOS_HEADER>(u8Data.data());
+        pNtHeaders = reinterpret_cast<PIMAGE_NT_HEADERS>((LPBYTE)pDosHeader + pDosHeader->e_lfanew);
+    }
 
     if (inputFilePath.stem().extension().string().empty()) {
-        if (pNtHeaders->FileHeader.Characteristics & (WORD)IMAGE_FILE_DLL) {
-            outputFileName += ".dll";
-        } else if (pNtHeaders->FileHeader.Characteristics & (WORD)IMAGE_FILE_EXECUTABLE_IMAGE) {
-            outputFileName += ".exe";
+        if (hasHeaders) {
+            if (pNtHeaders->FileHeader.Characteristics & (WORD)IMAGE_FILE_DLL) {
+                outputFileName += ".dll";
+            } else if (pNtHeaders->FileHeader.Characteristics & (WORD)IMAGE_FILE_EXECUTABLE_IMAGE) {
+                outputFileName += ".exe";
+            } else {
+                std::string ouputFileExt = console->getInput<std::string>("\ninput the output file extension: ");
+                if (ouputFileExt.contains("."))
+                    outputFileName += ouputFileExt;
+                else
+                    outputFileName += "." + ouputFileExt;
+            }
         } else {
-            outputFileName = console->getInput<std::string>("\ninput the output file extension: ");
+            std::string ouputFileExt = console->getInput<std::string>("\ninput the output file extension: ");
+            if (ouputFileExt.contains("."))
+                outputFileName += ouputFileExt;
+            else
+                outputFileName += "." + ouputFileExt;
         }
-
     } else {
         outputFileName = inputFilePath.stem().string();
     }
@@ -60,14 +79,14 @@ void Constructor::initialize(std::filesystem::path inputFilePath) {
         return;
     }
 
-    for (uint8_t binary : u8Data) {
-        ouputFile << static_cast<const char>(binary);
-    }
+    for (uint8_t binary : u8Data) ouputFile << static_cast<const char>(binary);
 
     ouputFile.close();
 
     console->log(LogLevel::lightcyan, "\n\n[%s]\n", outputFileName.c_str());
-    console->log("architecture: %s\n", (pNtHeaders->FileHeader.Machine == IMAGE_FILE_MACHINE_AMD64) ? "64-bit" : "32-bit");
+
+    if (hasHeaders) console->log("architecture: %s\n", (pNtHeaders->FileHeader.Machine == IMAGE_FILE_MACHINE_AMD64) ? "64-bit" : "32-bit");
+
     console->log("size: %d kb\n\n", static_cast<int>(u8Data.size()) / 1000);
 
     console->report(LogLevel::success, "finished constructing the file\n\n");
