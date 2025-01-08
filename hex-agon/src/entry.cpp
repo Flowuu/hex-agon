@@ -31,7 +31,8 @@ int main(int argc, char* argv[]) {
     }
 
     // dumping dump XD
-    if (strcmp(inputFilePath.extension().string().c_str(), ".bin") && strcmp(inputFilePath.extension().string().c_str(), ".dump")) {
+    if (strcmp(inputFilePath.extension().string().c_str(), ".bin") && strcmp(inputFilePath.extension().string().c_str(), ".dump") &&
+        strcmp(inputFilePath.extension().string().c_str(), ".txt")) {
         dump      = true;
         construct = false;
     } else {
