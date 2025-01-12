@@ -79,7 +79,7 @@ void Constructor::initialize(std::filesystem::path inputFilePath) {
         return;
     }
 
-    for (uint8_t binary : u8Data) ouputFile << static_cast<const char>(binary);
+    for (uint8_t binary : u8Data) ouputFile << static_cast<unsigned char>(binary);
 
     ouputFile.close();
 
