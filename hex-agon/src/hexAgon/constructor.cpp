@@ -21,7 +21,6 @@ void Constructor::initialize(std::filesystem::path inputFilePath) {
         console->report(LogLevel::error, "%s\n", console->getLastError().c_str());
         return;
     }
-    console->log(LogLevel::orange, "\n[hex view]\n");
 
     std::vector<uint8_t> u8Data;
     std::string strData;
@@ -31,10 +30,6 @@ void Constructor::initialize(std::filesystem::path inputFilePath) {
 
         strData.erase(0, 2);
         strData.erase(strData.find(','), strData.find(','));
-
-        console->log("%s ", strData.c_str());
-        if (i % 16 == 0) console->log("\n");
-
         // cooked
         u8Data.push_back(static_cast<uint8_t>(std::stoi(strData, nullptr, 16)));
     }

@@ -46,17 +46,12 @@ void HexDumper::initialize(std::filesystem::path inputFilePath) {
 
     console->log("read bytes: %d kb\n", static_cast<int>(readBytes) / 1000);
 
-    console->log(LogLevel::orange, "\n[hex view]\n");
-
     uint8_t* buffer = reinterpret_cast<uint8_t*>(pInputFileBuff);
     for (size_t i = 0; i <= readBytes; i++) {
         outputFile << "0x" << std::setw(2) << std::setfill('0') << std::hex << std::uppercase << static_cast<int>(buffer[i]) << ", ";
 
-        std::cout << std::setw(2) << std::setfill('0') << std::hex << std::uppercase << static_cast<int>(buffer[i]) << " ";
-
         if ((i + 1) % 16 == 0) {
             outputFile << '\n';
-            std::cout << '\n';
         }
     }
 
